@@ -50,6 +50,7 @@ public class GoogleSearchTest {
         // Sutomation code
         WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
+        driver.get("http://www.google.com");
         driver.findElement(By.name("q"));
         
         
