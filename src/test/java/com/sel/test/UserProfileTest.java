@@ -4,7 +4,7 @@
  */
 package com.sel.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import java.time.Duration;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,7 +38,6 @@ public class UserProfileTest {
     WebDriver driver;
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));

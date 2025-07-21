@@ -4,7 +4,7 @@
  */
 package com.sel.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import java.time.Duration;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -48,7 +48,6 @@ public class HotmailLoginTest {
     // public void hello() {}
     @Test
     public void testLogin() throws InterruptedException{
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));

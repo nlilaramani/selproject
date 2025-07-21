@@ -4,7 +4,6 @@
  */
 package com.sel.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,7 +50,6 @@ public class aa1 {
     // public void hello() {}
     @Test
     public void testUserProfile() throws InterruptedException{
-         WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -102,7 +100,6 @@ public class aa1 {
     
     @Test
     public void testHotamilLogin() throws InterruptedException{
-         WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -120,7 +117,6 @@ public class aa1 {
     }
     @Test
     public void testFacebookLogin() throws InterruptedException{
-         WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -135,7 +131,6 @@ public class aa1 {
     
      @Test
     public void testUserprofile(){
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -159,7 +154,6 @@ public class aa1 {
     
     @Test
     public void testopenTabs(){
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
@@ -175,7 +169,6 @@ public class aa1 {
     
     @Test
     public void testAlert() throws InterruptedException{
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));

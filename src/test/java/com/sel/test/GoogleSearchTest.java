@@ -4,7 +4,7 @@
  */
 package com.sel.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class GoogleSearchTest {
     @Test
     public void testSearch(){
         // Sutomation code
-        WebDriverManager.chromedriver().setup();
+        
         WebDriver driver=new ChromeDriver();
         driver.get("http://www.google.com");
         driver.findElement(By.name("q"));

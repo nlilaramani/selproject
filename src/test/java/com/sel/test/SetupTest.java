@@ -4,7 +4,7 @@
  */
 package com.sel.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,7 +52,6 @@ public class SetupTest {
     
     @Test
     public void testSeleniumSetup(){
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.get("http://www.google.com");
         //driver.findElement(By.name("q")).sendKeys("Selenium jobs");
@@ -64,12 +63,12 @@ public class SetupTest {
         driver.findElement(By.id("exampleInputEmail")).sendKeys("nrlilaramani@hotmail.com");
        // driver.findElement(By.id("exampleInputEmail")).submit();
         
-        FileInputStream fs=new FileInputStream(new File("c:\\data\\login.xlsx"));
-        Workbook wb=new XSSFWorkbook(fs);
-        String un=wb.getSheetAt(0).getRow(1).getCell(0).getStringCellValue();
-        driver.findElement(By.id("exampleInputEmail")).clear();
-        driver.findElement(By.id("exampleInputEmail")).sendKeys(un);
-        fs.close();
+        //FileInputStream fs=new FileInputStream(new File("c:\\data\\login.xlsx"));
+        //Workbook wb=new XSSFWorkbook(fs);
+        //String un=wb.getSheetAt(0).getRow(1).getCell(0).getStringCellValue();
+        //driver.findElement(By.id("exampleInputEmail")).clear();
+        //driver.findElement(By.id("exampleInputEmail")).sendKeys(un);
+        //fs.close();
 
     }
 }

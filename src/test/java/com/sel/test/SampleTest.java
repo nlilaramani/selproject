@@ -4,7 +4,7 @@
  */
 package com.sel.test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,7 +49,6 @@ public class SampleTest {
     // public void hello() {}
     @Test
     public void testSample(){
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         // Navigate to ibm.com
         driver.get("http://www.ibm.com");
@@ -63,7 +62,6 @@ public class SampleTest {
     
     @Test
     public void testNav(){
-        WebDriverManager.chromedriver().setup();
         WebDriver driver=new ChromeDriver();
         driver.get("http://www.ibm.com");
         driver.get("https://www.google.com/");
