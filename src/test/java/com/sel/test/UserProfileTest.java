@@ -5,7 +5,11 @@
 package com.sel.test;
 
 
+import java.io.File;
 import java.time.Duration;
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,13 +22,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.FileInputStream;
+
 
 /**
  *
  * @author itexps
  */
 public class UserProfileTest {
-    
+
     public UserProfileTest() {
     }
     
@@ -40,12 +49,12 @@ public class UserProfileTest {
     public void setUp() {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
     
     @After
     public void tearDown() {
-        driver.quit();
+        //driver.quit();
     }
 
     // TODO add test methods here.
@@ -72,10 +81,19 @@ public class UserProfileTest {
         //driver.findElement(By.xpath("//input[@type='checkbox']")).click();
         
     }
-    
+
+    @Test
+    public void someTest() throws Exception{
+        FileInputStream fs=new FileInputStream(new File("c:\\data\\login.xlsx"));
+        Workbook wb=new XSSFWorkbook(fs);
+        String un=wb.getSheetAt(0).getRow(1).getCell(0).getStringCellValue();
+        driver.findElement(By.id("exampleInputEmail")).clear();
+        driver.findElement(By.id("exampleInputEmail")).sendKeys(un);
+        fs.close();
+    }
+
     @Test
     public void testAlert() throws InterruptedException{
-
         driver.get("https://nlilaramani.github.io/frame.html");
         driver.findElement(By.tagName("button")).click();
         Thread.sleep(5000);
@@ -97,5 +115,22 @@ public class UserProfileTest {
         driver.get("http://www.microsoft.com");
         driver.switchTo().window(h2);
         driver.findElement(By.name("q")).sendKeys("Selenium jobs");
+    }
+
+    @Test
+    public void testTimeouts(){
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        Wait<WebDriver> wait1=new WebDriverWait(driver,Duration.ofSeconds(20));
+        driver.get("https://www.selenium.dev/selenium/web/dynamic.html");
+        //iver.findElement(By.id("adder")).click();
+       //WebElement element=driver.findElement(By.id("box0"));
+        //wait1.until(d->element.isDisplayed());
+        //System.out.println(element.isDisplayed());
+        //System.out.println(element.isEnabled());
+        driver.findElement(By.id("reveal")).click();
+        WebElement element1=driver.findElement(By.id("revealed"));
+        wait1.until(d->element1.isDisplayed());
+        element1.sendKeys("Hello");
+
     }
 }

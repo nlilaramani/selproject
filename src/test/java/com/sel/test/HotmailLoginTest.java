@@ -5,7 +5,12 @@
 package com.sel.test;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.time.Duration;
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -61,5 +66,31 @@ public class HotmailLoginTest {
         //driver.findElement(By.name("passwd")).clear();
         driver.findElement(By.name("passwd")).sendKeys("Sel@123!");
         driver.findElement(By.name("passwd")).submit();
+    }
+
+    @Test
+    public void someTest() throws Exception{
+        FileInputStream fs=new FileInputStream(new File("c:\\data\\login.xlsx"));
+        Workbook wb=new XSSFWorkbook(fs);
+        String un=wb.getSheetAt(0).getRow(1).getCell(0).getStringCellValue();
+        String pwd=wb.getSheetAt(0).getRow(1).getCell(1).getStringCellValue();
+        WebDriver driver=new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.get("http://www.hotmail.com");
+        driver.findElement(By.partialLinkText("Sign in")).click();
+        driver.findElement(By.id("i0116")).clear();
+        //driver.findElement(By.id("i0116")).sendKeys("SelSample@hotmail.com");
+        driver.findElement(By.id("i0116")).sendKeys(un);
+        driver.findElement(By.id("idSIButton9")).click();
+        //driver.wait(10000);
+        Thread.sleep(10000);
+        //driver.findElement(By.name("passwd")).clear();
+        //driver.findElement(By.name("passwd")).sendKeys("Sel@123!");
+        driver.findElement(By.name("passwd")).sendKeys(pwd);
+        driver.findElement(By.name("passwd")).submit();
+        //driver.findElement(By.id("exampleInputEmail")).clear();
+        //driver.findElement(By.id("exampleInputEmail")).sendKeys(un);
+        fs.close();
     }
 }

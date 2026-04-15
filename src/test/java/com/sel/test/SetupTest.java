@@ -14,7 +14,12 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 /**
@@ -71,4 +76,41 @@ public class SetupTest {
         //fs.close();
 
     }
+
+    @Test
+    public void testTimeouts() throws InterruptedException {
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://www.selenium.dev/selenium/web/dynamic.html");
+        // Set implicit wait for 2 seconds
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        driver.findElement(By.id("adder")).click();
+        // Wait for 5 seconds
+        //Thread.sleep(5000); Not a good idea
+        driver.findElement(By.id("box0")).click();
+        driver.findElement(By.id("reveal")).click();
+        //Thread.sleep(5000);
+        WebElement element=driver.findElement(By.id("revealed"));
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(d->element.isDisplayed());
+        if(element.isDisplayed() && element.isEnabled()) {
+            element.sendKeys("Hello");
+        }
+        if(element.isSelected()){
+
+        }
+    }
+
+    @Test
+    public void testAlert() throws InterruptedException {
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://nlilaramani.github.io/frame.html");
+        driver.findElement(By.tagName("button")).click();
+        Thread.sleep(5000);
+        // Dismiss the alert
+        String text=driver.switchTo().alert().getText();
+        System.out.println("Alert Text:"+text);
+        //driver.switchTo().alert().dismiss(); // Click on cancel button
+        driver.switchTo().alert().accept(); // Click on ok button
+    }
+
 }
