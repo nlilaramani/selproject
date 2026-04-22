@@ -55,4 +55,19 @@ public class GoogleSearchTest {
         
         
     }
+    @Test
+    public void testSearch2(){
+        // Sutomation code
+
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+        driver.getTitle();
+        driver.findElement(By.name("my-text")).sendKeys("Selenium");
+        driver.findElement(By.name("my-textarea")).sendKeys("Selenium is a popular automation tool");
+        driver.findElement(By.name("my-select")).click();
+        driver.findElement(By.xpath("//option[@value='2']")).click();
+        driver.findElement(By.name("my-checkbox")).click();
+        driver.findElement(By.name("my-radio")).click();
+        driver.findElement(By.cssSelector("button")).click();
+    }
 }

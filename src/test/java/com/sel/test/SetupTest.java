@@ -11,11 +11,17 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -113,4 +119,53 @@ public class SetupTest {
         driver.switchTo().alert().accept(); // Click on ok button
     }
 
+    @ParameterizedTest
+    @ValueSource(ints={1,2,3,4,5})
+    public void testParameterized(int num){
+        System.out.println("Number is "+num);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources="/profiletest.csv",numLinesToSkip=1)
+    public void testProfile(String firstName,String lastName, String uname, String pwd, String gender){
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://nlilaramani.github.io");
+        driver.findElement(By.partialLinkText("User Registration")).click();
+        driver.findElement(By.id("fname")).clear();
+        //driver.findElement(By.id("fname")).sendKeys("Robert");
+        driver.findElement(By.id("fname")).sendKeys(firstName);
+        //driver.findElement(By.name("lname")).sendKeys("Daley");
+        driver.findElement(By.name("lname")).sendKeys(lastName);
+        driver.findElement(By.id("username")).sendKeys("Rob");
+        driver.findElement(By.className("pwd")).sendKeys("testpwd");
+        driver.findElements(By.name("g")).get(0).click();
+        WebElement e=driver.findElement(By.tagName("select"));
+        Select s=new Select(e);
+        s.selectByIndex(1);
+        driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+        //driver.findElement(By.xpath("//input[1]")).sendKeys("Name with xpath");
+        //driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value={"Robert,Ill,ril,123","Paul,Hardy,phardy,222"})
+    public void testProfile1(String firstName,String lastName, String uname, String pwd){
+        WebDriver driver=new ChromeDriver();
+        driver.get("https://nlilaramani.github.io");
+        driver.findElement(By.partialLinkText("User Registration")).click();
+        driver.findElement(By.id("fname")).clear();
+        //driver.findElement(By.id("fname")).sendKeys("Robert");
+        driver.findElement(By.id("fname")).sendKeys(firstName);
+        //driver.findElement(By.name("lname")).sendKeys("Daley");
+        driver.findElement(By.name("lname")).sendKeys(lastName);
+        driver.findElement(By.id("username")).sendKeys("Rob");
+        driver.findElement(By.className("pwd")).sendKeys("testpwd");
+        driver.findElements(By.name("g")).get(0).click();
+        WebElement e=driver.findElement(By.tagName("select"));
+        Select s=new Select(e);
+        s.selectByIndex(1);
+        driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+        //driver.findElement(By.xpath("//input[1]")).sendKeys("Name with xpath");
+        //driver.findElement(By.xpath("//input[@type='checkbox']")).click();
+    }
 }

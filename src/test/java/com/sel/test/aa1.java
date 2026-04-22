@@ -92,7 +92,7 @@ public class aa1 {
     driver.findElement(By.name("passwordRegisterPage")).sendKeys("Nrl@123");
     driver.findElement(By.name("confirm_passwordRegisterPage")).clear();
     driver.findElement(By.name("confirm_passwordRegisterPage")).sendKeys("Nrl@123");
-    driver.findElement(By.name("usernameRegisterPage")).click();
+    //driver.findElement(By.name("usernameRegisterPage")).click();
     driver.findElement(By.name("usernameRegisterPage")).clear();
     driver.findElement(By.name("usernameRegisterPage")).sendKeys("nrl111");
     driver.findElement(By.id("register_btnundefined")).click();
