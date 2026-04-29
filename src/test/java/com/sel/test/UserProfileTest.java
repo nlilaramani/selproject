@@ -122,6 +122,7 @@ public class UserProfileTest {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         Wait<WebDriver> wait1=new WebDriverWait(driver,Duration.ofSeconds(20));
         driver.get("https://www.selenium.dev/selenium/web/dynamic.html");
+        
         //iver.findElement(By.id("adder")).click();
        //WebElement element=driver.findElement(By.id("box0"));
         //wait1.until(d->element.isDisplayed());
@@ -131,6 +132,8 @@ public class UserProfileTest {
         WebElement element1=driver.findElement(By.id("revealed"));
         wait1.until(d->element1.isDisplayed());
         element1.sendKeys("Hello");
+        wait1=new WebDriverWait(driver,Duration.ofSeconds(20));
+        wait1.until(d->1==1);
 
     }
 }
