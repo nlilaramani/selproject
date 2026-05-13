@@ -23,6 +23,7 @@ public class UserProfilePage {
         driver.findElement(firstName).sendKeys(fname);
         return this;
     }
+
     public void enterLastName(String lname){
         driver.findElement(lastName).sendKeys(lname);
     }
@@ -41,6 +42,8 @@ public class UserProfilePage {
     public void setQualification(String q){
         driver.findElement(qualification).sendKeys(q);
     }
-
+    public void submitPage(){
+        driver.findElement(lastName).submit();
+    }
 
 }
